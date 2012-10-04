@@ -1,0 +1,14 @@
+{
+    "name": "OpenErp"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.5.8"
+    , "jade": ">= 0.0.1"
+    , "mongodb": ">= 0.9.6-7"
+    , "mongoose": "2.6.3"
+    , "winston": "0.5.11"
+    , "winston-syslog": "0.2.2"
+
+  }
+}

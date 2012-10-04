@@ -1,0 +1,28 @@
+div.loginContainer
+    div.widgetPanel
+        div.widgetHead
+            div.loginLogo
+                h5 Login
+        div.widgetContent
+            form#loginForm(method='post',action='/login')
+                fieldset
+                    ul
+                        li
+                            div.widgetRow80
+                                label Username:
+                                input.round(type='text', name='login')
+                        li
+                            div.widgetRow80
+                                label  Password:
+                                input.round(type='password', name='password')
+                        li
+                            div.widgetRow40
+                                span(style='float:left;')
+                                    input(type='checkbox', name='chkRemember')
+                                label(style='float:left;') Remember me`
+                        li
+                            div.widgetRow40
+                                p I've&nbsp;
+                                   a(href="/forgot",title="forgotten my password") forgotten my password
+                        li
+                            input.round.button(type='submit', value='Log me in')

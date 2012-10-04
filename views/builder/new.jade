@@ -1,0 +1,16 @@
+div.contactEditContainer
+    div.widgetPanel
+        div.widgetHead
+            h2= title
+        div.widgetContent
+            form(method="post", action="/builder")
+                fieldset
+                    ul
+                        li
+                            div.widgetRow80
+                               label Name:
+                               input.round(type="text", name="name")
+                        li
+                            input(type='submit', value='Submit')
+                            &nbsp;
+                            input(type='submit', value='Cancel')

@@ -1,0 +1,13 @@
+div.contactShowContainer
+    div.widgetPanel
+        div.widgetHead
+            h2= title
+        div.widgetContent
+            form( method="post", action="/contact/"+contact._id)
+               p #{contact.name}
+               a(href='/contact/'+contact._id+'/edit', title="edit") Edit
+               &nbsp;
+               a(class='destroy', href='/contact/delete/'+contact._id, title="delete") Delete
+               &nbsp
+               a(href='/contact', title="back") Back
+               &nbsp

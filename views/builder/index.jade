@@ -1,0 +1,11 @@
+div.builderContainer
+    div.widgetPanel
+        div.widgetHead
+            h2= title
+        div.widgetContent
+            #entities
+                - each entity in entities
+                    div.name
+                       a(href="/builder/"+entity._id.toHexString())!= entity.name
+         Create new entity:
+         a(href="/builder/new") &nbsp;here

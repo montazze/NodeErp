@@ -1,0 +1,349 @@
+@import "reset.css";
+
+html {height: 100%;}
+* html body {height: 100%;}
+
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.notificationContainer ul li span {
+    color: #424242;
+    display: block;
+    font-size: 16px;
+    vertical-align: middle;
+    white-space: normal;
+    width: 200px;
+}
+
+.round {
+    border-radius: 0.3125em; /* 5/16 */
+    -moz-border-radius: 0.3125em; /* 5/16 */
+    -webkit-border-radius: 0.3125em; /* 5/16 */
+}
+.imageRight {
+    background-position: right center;
+    padding-right: 3em; /* 36/12 */
+}
+.button {
+    padding: 0.833em; /* 10/12 */
+    display: inline-block;
+    text-decoration: none;
+    background-repeat: no-repeat;
+}
+
+.widgetPanel{
+    border: 1px solid #d5d5d5;
+    display: block;
+    background: #fafafa;
+    clear: both;
+    border-top: none;
+}
+.widgetHead{
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #EFEFEF;
+    height: 20px;
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    position: relative;
+    padding: 10px;
+}
+.widgetContent{
+    margin: 20px;
+    display: block;
+
+}
+.widgetRow80{
+    height: 80px;
+    width: 100%;
+}
+.widgetRow40{
+    height: 40px;
+    width: 100%;
+}
+
+.centerContainer
+{
+    margin-left: 5%;
+    margin-right: 5%;
+    overflow: hidden;
+}
+
+
+#fixedContainer{
+    width: 100%;
+    position: fixed;
+    background-color: #68ace5;
+}
+#adminContainer{
+    height: 50px;
+
+
+}
+.logo{
+    width: 150px;
+    padding: 10px;
+    float: left;
+
+}
+.usersContainer{
+	float: right;
+	font-size: 11px;
+    position: relative;
+    z-index: 6000;
+}
+.usersContainer ul {
+    margin-right: 2px;
+}
+.usersContainer ul li{
+	cursor: pointer;
+	display: inline;
+	float: left;
+	position: relative;
+}
+.usersContainer ul li img { 
+	float: left; 
+	display: block; 
+	margin: 13px 2px 11px 14px; 
+}
+.numberMail{
+	margin: 0px;
+	position: absolute;
+	right: 1px;
+    top: 25px;
+    color: white;
+}
+.userName{
+    font-size: 16px;
+    display: block;
+    float: left;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 14px;
+    padding-top: 15px;
+    color: white;
+}
+
+ .numberMail{
+     text-align: center;
+     background: url(../img/number.png) repeat-x;
+     display: inline-block;
+     padding: 1px 5px;
+     color: #fff;
+     -moz-border-radius: 2px;
+     -webkit-border-radius: 2px;
+     -khtml-border-radius: 2px;
+     border-radius: 2px;
+     float: right;
+     font-size: 11px;
+     line-height: 14px;
+ }
+
+#companyContainer{
+    padding-top: 50px;
+    height: 80px;
+    background-color: #666666;
+}
+
+.company{
+    padding-top: 25px;
+    float: left;
+    width: 250px;
+}
+
+.companyName{
+    color: #cac5c5;
+    font-size: 26px;
+}
+
+.notificationContainer{
+    padding-top: 20px;
+    float: right;
+}
+.notificationContainer ul {
+    margin-right: 2px;
+}
+.notificationContainer ul li{
+    cursor: pointer;
+    display: inline;
+    float: left;
+    position: relative;
+}
+.notificationContainer ul li img {
+    float: left;
+    display: block;
+    margin: 13px 2px 11px 14px;
+}
+
+.searchImg{
+    background-image: url('../img/zoom.png');
+}
+
+.numberTask{
+
+}
+
+
+/* ---------- FORMS ---------- */
+form label {
+    display: block;
+    text-transform: uppercase;
+    color: #2a2e36;
+    margin: 0 0 0.3125em 0;
+}
+
+form label.alt-label { text-transform: none; }
+
+form input[type="text"], input[type="password"], textarea {
+    border: 1px solid #d9dbdd;
+    padding: 1em 0.625em; /* 16/16 10/16 */
+    outline: none;
+    width: 96%;
+}
+form input[type="text"]:hover, input[type="password"]:hover, textarea:hover,
+form input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    border: 1px solid #bbbdbe;
+}
+
+form input[type="checkbox"], form input[type="radio"] { margin-right: 0.833em; /* 10/12 */ }
+
+form input[type="submit"] {
+    border: none;
+    cursor: pointer;
+    padding: 0.833em; /* 10/12 */
+
+    background-position: right center;
+    padding-right: 3em; /* 36/12 */
+    background-repeat: no-repeat;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+form#searchForm input {
+    border: none;
+    /* The inner text overflows on the BG image, so we're setting a right padding to stop that */
+    padding-right: 3em; /* 36/12 */
+}
+form#searchForm input:focus {
+    /* Same as .dark:hover */
+    background-color: #cac5c5;
+    color: white;
+}
+
+form p em {
+    margin-top: 0.833em; /* 10/12 */
+    display: block;
+}
+
+form p.form-error, form p.form-error label { color: #cf4425; }
+
+form p.form-error em {
+    background: transparent url('../img/error.png') no-repeat left center;
+    padding-left: 2em; /* 24/12 */
+}
+
+form input.error-input { border: 1px solid #ff876f; }
+form input.error-input:hover { border: 1px solid #b03e27; }
+
+/* Styling the HTML5 placeholders */
+/* So far they don't work in: IE, Opera 10 and below, Firefox 3.6 and below */
+::-webkit-input-placeholder { color: #858d9c; }
+:-moz-placeholder { color: #858d9c; }
+
+
+
+
+
+/* ---------- CONTENT BOXES ---------- */
+.information-box, .confirmation-box, .error-box, .warning-box {
+    padding: 0.833em 0.833em 0.833em 3em; /* 10/12 36/12 */
+    margin-bottom: 0.833em; /* 20/12 */
+}
+
+.information-box {
+    background: #e5f5f9 url('../img/information.png') no-repeat 0.833em center;
+    border: 1px solid #cae0e5;
+    color: #5a9bab;
+}
+
+.confirmation-box {
+    background: #e7fae6 url('../img/confirmation.png') no-repeat 0.833em center;
+    border: 1px solid #b7cbb6;
+    color: #52964f;
+}
+
+.error-box {
+    background: #fde8e4 url('../img/error.png') no-repeat 0.833em center;
+    border: 1px solid #e6bbb3;
+    color: #cf4425;
+}
+
+.warning-box {
+    background: #fdf7e4 url('../img/warning.png') no-repeat 0.833em center;
+    border: 1px solid #e5d9b2;
+    color: #b28a0b;
+}
+.loginContainer{
+    width: 400px;
+    padding-left: 50%;
+    margin-left: -200px;
+}
+.numberTask{
+    font-size: 26px;
+    height: 40px;
+    display: inline-block;
+    float: left;
+    line-height: 41px;
+    padding: 0 10px;
+    -moz-box-shadow: 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 0 #fff;
+    box-shadow: 0 1px 0 #fff;
+    margin-right: 10px;
+    background: #efefef;
+    border: 1px solid #d5d5d5;
+    color: #b55d5c;
+}
+
+#verticalMenu{
+
+    width: 250px;
+    float: left;
+    margin-right: 30px;
+    margin-top: 40px;
+}
+
+.actionBar {
+    display: block;
+    float: left;
+}
+.actionBar ul li {
+    cursor: pointer;
+    display: inline;
+    float: left;
+    position: relative;
+}
+.actionBar ul li img {
+    float: left;
+    display: block;
+    margin: 0px 25px 0px 0px;
+}
+#contentContainer{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 270px;
+    overflow: hidden;
+}
+
+#footerContainer{
+
+    height: 120PX;
+    width: 100%;
+    background-color: #505050;
+}
+#notificationContainer{
+    height: 40px;
+    width: 100%;
+    background-color: #3f3f3f;
+}

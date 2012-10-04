@@ -1,0 +1,54 @@
+
+<script>
+  $(function() {
+    var User = Backbone.Model.extend({}); //Line 9
+
+    var UserList = Backbone.Collection.extend({ //Line 11
+      model: User,
+      url: '/users.json',
+      parse: function(response) {
+        return response;
+      }
+    });
+
+    var SelectionView = Backbone.View.extend({ //Line 19
+      el : $('#user-selection'),
+      render: function() {
+        $(this.el).html("You Selected : " + this.model.get('name')); //Line 22
+        return this;
+      },
+    });
+
+    var users = new UserList(); //Line 26
+    users.fetch({async: false});
+    var userNames = users.pluck("name");
+
+    $("#user-input").autocomplete({ //Line 30
+      source : userNames,
+      minLength : 2,
+      select: function(event, ui){ //Line 33
+        var selectedModel = users.where({name: ui.item.value})[0];
+        var view = new SelectionView({model: selectedModel});
+        view.render();
+      }
+    });
+  });
+</script>
+
+  $(function() {
+    function getNames() {
+      var users = $.ajax({url : "/users.json", async: false});
+      var names = _.map(JSON.parse(users.responseText), function(user){return user.name});
+      return names;
+    }
+
+    var names = getNames();
+
+    $("#user-input").autocomplete({
+      source : names,
+      minLength : 2,
+      select: function(event, ui){
+        $("#user-selection").html("Selected: " + ui.item.value);
+      }
+    });
+  });

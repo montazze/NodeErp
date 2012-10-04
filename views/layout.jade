@@ -1,0 +1,76 @@
+!!!
+doctype 5
+html(lang="en")
+  head
+    title= title
+
+    block scripts
+        script(src='/js/lib/jquery-1.7.2.js')
+        script(src='/js/lib/knockout-2.1.0.js')
+        script(src='/js/lib/modernizr-2.5.3.js')
+        script(src='/socket.io/socket.io.js')
+        script(src='/js/nodeerp.js')
+
+    link(rel='stylesheet', href='/css/style.css')
+
+    div#fixedContainer
+      div.centerContainer
+        div#adminContainer
+           div.logo
+              img(src='/img/logo.png')
+           div.usersContainer
+              ul
+                li: a(href='#')
+                    img(src='/img/settings.png')
+                li: a(href='#')
+                    img(src='/img/favorites.png')
+                li: a(href='#')
+                    img(src='/img/mail.png')
+                    span.numberMail 10
+                li: a(href='#')
+                    img(src='/img/account.png')
+                    span.userName username
+    div#companyContainer
+        div.centerContainer
+            div.company
+                span.companyName Company
+            div.notificationContainer
+                ul
+                    li
+                        a.numberTask(href='#') 50
+                        span pending tasks
+                    li
+                        a.numberTask(href='#') 230
+                        span pending tasks
+                    li
+                        a.numberTask(href='#') 43
+                        span pending tasks
+                    li
+                        div.searchContainer
+                            form#searchForm(method='post',action='/search/')
+                                fieldset
+                                    input#search-keyword.round.button.searchImg.imageRight(type='text', name='search', placeholder='Search...',style='width: 200px; margin-left:100px;' )
+                                    input(type='hidden', value='submit')
+    div.centerContainer
+            div#verticalMenu
+                div.widgetPanel
+                    div.widgetHead
+                        div.actionBar
+                            ul
+                                li
+                                    a.formsMenu(href='#')
+                                        img(src='/img/forms.png')
+                                li
+                                    a.reportMenu(href='#')
+                                        img(src='/img/reports.png')
+                                li
+                                    a.flowMenu(href='#')
+                                        img(src='/img/flow.png')
+                                li
+                                    a.settingMenu(href='#')
+                                        img(src='/img/settingmenu.png')
+                    div.widgetContent
+            div#contentContainer
+                body!= body
+    div#footerContainer
+    div#notificationContainer
