@@ -58,9 +58,8 @@ module.exports = function(app){
 
     // ADD
     app.get('/contact/new', function(req, res) {
-        res.render('contact/new', { locals: {
-            title: 'New Contact',
-            contact:  new Contact({})
+        res.render("contact/new", { locals: {
+            title: 'New Contact'
         }
         });
     });
@@ -98,6 +97,7 @@ module.exports = function(app){
     // READ
     app.get('/contact',  function(req, res){
         res.render('contact/index', {
+            layout: true,
             title: 'Contacts'
          }
       )

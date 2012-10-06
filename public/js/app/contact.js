@@ -58,8 +58,42 @@ $(function(){
         nerp.vm.loadContacts();
         ko.applyBindings(nerp.vm);
 
-});
 
+$('<div>').attr({
+         id:  "editDialog"
+}).appendTo('.widgetPanel');
+
+
+$('<div>').attr({
+    id: "contentArea"
+}).appendTo('#editDialog');
+
+$(document).on("click",".edit-click",function(){
+       $("#contentArea").load('http://localhost:3001/contact/new');
+       $("#editDialog").dialog({
+           modal: true,
+           title: "Lookup dialog",
+
+           buttons:{
+               Ok: function(){
+                   $("#lookupValue").val("test");
+                   $("#lookupId").val("1");
+                   $(this).dialog("close");
+               },
+               Cancel: function(){
+                   $("#lookupValue").val("");
+                   $("#lookupId").val("");
+                   $(this).dialog("close");
+               }
+           }
+       });
+    $()
+
+
+
+
+   });
+});
 
 
 

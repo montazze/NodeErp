@@ -6,7 +6,8 @@ module.exports = function(app){
      * GET home page.
      */
     app.get('/', function(req, res){
-        res.render('index',{
+        res.render('index', {
+            layout: true,
             title: 'Welcome to NodeErp'
 
 

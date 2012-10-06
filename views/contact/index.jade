@@ -12,6 +12,8 @@ div.contactIndexContainer
                         th surname
                 tbody(data-bind="foreach: contacts")
                     tr
+                        td
+                            button.edit-click(data-bind="attr: { id: id }") ...
                         td(data-bind="text: name")
                         td(data-bind="text: surname")
 
