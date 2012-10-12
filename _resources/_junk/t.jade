@@ -1,0 +1,51 @@
+//
+   Company: OfficeSoft
+   User: smangelschots
+   Date: 12/10/12
+   Time: 02:16
+ko.bindingHandlers.dataTable = {
+  init: function(element, valueAccessor) {
+    var options = valueAccessor();
+    var defaults = {
+        "aaData": options["data"](),
+        "bRetrieve": true,
+        "fnRowCallback": function(nRow, aData, iDisplayIndex) {
+            $(nRow).mouseover(function(){
+              $(nRow).attr("style","background-color:yellow !important;");
+            });
+            $(nRow).mouseout(function() {
+              $(nRow).removeAttr("style");
+            });
+            if(typeof options["rowClick"] === "function") {
+              $(nRow).click(function() {
+                options["rowClick"](aData);
+              });
+            }
+            return nRow;
+        },
+    }
+    var tableOptions = $.extend(defaults,options["options"]);
+    options["object"]($(element).dataTable(tableOptions));
+  },
+  update: function(element,valueAccessor) {
+    var options = valueAccessor();
+    options["object"]().fnClearTable();
+    options["object"]().fnAddData(options["data"](),true);
+  }
+};
+
+var VM = {
+    tableData: ko.observableArray([[1,"John","Doe"],[2,"Lorem","Ipsum"]]),
+    dataTable: ko.observable(null),
+    tableRowClick: function(data) { alert("O id é "+data[0]); },
+    tableOptions: { aaSorting: [["1","desc"]] },
+    idx: 2,
+    adicionarDados: function() {
+        VM.idx++;
+        VM.tableData.push([VM.idx,"Teste"+VM.idx,"1234"+VM.idx]);
+    }
+};
+
+$(function() {
+   ko.applyBindings(VM);
+});
