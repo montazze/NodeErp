@@ -1,0 +1,85 @@
+/**
+ * Company: OfficeSoft
+ * User: smangelschots
+ * Date: 17/10/12
+ * Time: 23:34
+ */
+
+.jgridFilter {
+    text-align: left;
+    margin: 4px 8px 2px 10px;
+    position: absolute;
+    right: 0;
+    top: -56px;
+    color: #878787;
+    font-size: 11px;
+}
+.jgridFilter input[type="text"] {
+    padding: 3px 5px;
+    border: 1px solid #D5D5D5;
+    width: 200px;
+    position: relative;
+    margin-left: 6px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+    color: #878787;
+}
+.jgridFilter .srch {
+    position: absolute;
+    right: 6px;
+    top: 7px;
+    background: url(../images/searchSmall.png) no-repeat 0 0;
+    border: none;
+    width: 9px;
+    height: 9px;
+}
+
+.jgridToolbar{
+
+}
+.jgridTable {
+   width: 100%;
+}
+.jgridTable thead th {
+    cursor: pointer;
+    font-size: 11px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right: 0;
+    padding-top: 4px;
+    background-color: #afafaf;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+}
+.jgridTable tr{
+    border-bottom-color: #E7E7E7;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-width: 1px ;
+    border-left-color:  #E7E7E7;
+    border-left-style: solid;
+    border-right-width: 1px;
+    border-right-color:  #E7E7E7;
+    border-right-style: solid;
+
+}
+
+.jgridTable tr:first-child{
+    border-top-color: #E7E7E7;
+    border-top-style: solid;
+    border-top-width: 1px;
+
+}
+
+.jgridTable td{
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    border-left-color: #E7E7E7;
+    border-left-style: solid;
+    border-left-width: 1px;
+}

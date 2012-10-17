@@ -1,11 +1,21 @@
 @import "reset.css";
 
-html {height: 100%;}
-* html body {height: 100%;}
-
+html {
+    height: 100%;
+}
+* html body {
+    height: 100%;
+}
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 20px;
+  min-height: 100%;
+  position: relative;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #424242;
 }
 .notificationContainer ul li span {
     color: #424242;
@@ -14,6 +24,28 @@ body {
     vertical-align: middle;
     white-space: normal;
     width: 200px;
+}
+h1, h2, h3, h4, h5, h6, ul.tabs li a, .leftNav ul li a, .stats ul li span, .userLink, .errorPage p, .ui-dialog .ui-dialog-title {
+    font-family: 'Cuprum', sans-serif;
+    font-weight: normal;
+}
+h1 {
+    font-size: 24px;
+}
+h2 {
+    font-size: 22px;
+}
+h3 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 18px;
+}
+h5 {
+    font-size: 16px;
+}
+h6 {
+    font-size: 14px;
 }
 
 .round {
@@ -43,7 +75,6 @@ body {
     background-attachment: scroll;
     background-clip: border-box;
     background-color: #EFEFEF;
-    height: 20px;
     border-top: 1px solid #d5d5d5;
     border-bottom: 1px solid #d5d5d5;
     position: relative;
@@ -52,8 +83,21 @@ body {
 .widgetContent{
     margin: 20px;
     display: block;
+    position: relative;
 
 }
+.widgetFooter{
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #EFEFEF;
+
+    border-left: 1px solid #d5d5d5;
+    border-right: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+    position: relative;
+    padding: 10px;
+}
+
 .widgetRow80{
     height: 80px;
     width: 100%;
@@ -75,10 +119,11 @@ body {
     width: 100%;
     position: fixed;
     background-color: #68ace5;
+    z-index: 100;
+
 }
 #adminContainer{
     height: 50px;
-
 
 }
 .logo{
@@ -91,7 +136,7 @@ body {
 	float: right;
 	font-size: 11px;
     position: relative;
-    z-index: 6000;
+    z-index: 60;
 }
 .usersContainer ul {
     margin-right: 2px;
@@ -127,7 +172,7 @@ body {
 
  .numberMail{
      text-align: center;
-     background: url(../img/number.png) repeat-x;
+     background: url(../images/number.png) repeat-x;
      display: inline-block;
      padding: 1px 5px;
      color: #fff;
@@ -148,8 +193,10 @@ body {
 
 .company{
     padding-top: 25px;
+    padding-left: 50px;
     float: left;
     width: 250px;
+
 }
 
 .companyName{
@@ -177,7 +224,7 @@ body {
 }
 
 .searchImg{
-    background-image: url('../img/zoom.png');
+    background-image: url('../images/zoom.png');
 }
 
 .numberTask{
@@ -240,7 +287,7 @@ form p em {
 form p.form-error, form p.form-error label { color: #cf4425; }
 
 form p.form-error em {
-    background: transparent url('../img/error.png') no-repeat left center;
+    background: transparent url('../images/error.png') no-repeat left center;
     padding-left: 2em; /* 24/12 */
 }
 
@@ -263,25 +310,25 @@ form input.error-input:hover { border: 1px solid #b03e27; }
 }
 
 .information-box {
-    background: #e5f5f9 url('../img/information.png') no-repeat 0.833em center;
+    background: #e5f5f9 url('../images/information.png') no-repeat 0.833em center;
     border: 1px solid #cae0e5;
     color: #5a9bab;
 }
 
 .confirmation-box {
-    background: #e7fae6 url('../img/confirmation.png') no-repeat 0.833em center;
+    background: #e7fae6 url('../images/confirmation.png') no-repeat 0.833em center;
     border: 1px solid #b7cbb6;
     color: #52964f;
 }
 
 .error-box {
-    background: #fde8e4 url('../img/error.png') no-repeat 0.833em center;
+    background: #fde8e4 url('../images/error.png') no-repeat 0.833em center;
     border: 1px solid #e6bbb3;
     color: #cf4425;
 }
 
 .warning-box {
-    background: #fdf7e4 url('../img/warning.png') no-repeat 0.833em center;
+    background: #fdf7e4 url('../images/warning.png') no-repeat 0.833em center;
     border: 1px solid #e5d9b2;
     color: #b28a0b;
 }
@@ -317,22 +364,24 @@ form input.error-input:hover { border: 1px solid #b03e27; }
 .actionBar {
     display: block;
     float: left;
+    height: 20px;;
 }
 .actionBar ul li {
     cursor: pointer;
     display: inline;
     float: left;
     position: relative;
+
 }
 .actionBar ul li img {
     float: left;
     display: block;
     margin: 0px 25px 0px 0px;
+    height: 20px;
 }
 #contentContainer{
     margin-top: 40px;
     margin-bottom: 40px;
-    margin-left: 270px;
     overflow: hidden;
 }
 

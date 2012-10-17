@@ -1,22 +1,10 @@
 
 
 div.contactIndexContainer
-    div.widgetPanel
-        div.widgetHead
-            h2= title
-        div.widgetContent
-           table.viewTable
-                thead
-                    tr
-                        th name
-                        th surname
-                tbody(data-bind="foreach: contacts")
-                    tr
-                        td
-                            button.edit-click(data-bind="attr: { id: id }") ...
-                        td(data-bind="text: name")
-                        td(data-bind="text: surname")
+     div.jgrid(data-bind='jgrid:gridViewModel')
 
 
 block scripts
      script(src='/js/viewmodel/contact.js')
+
+

@@ -13,19 +13,33 @@ html(lang="en")
 
     link(rel='stylesheet', href='css/normalize.css')
     link(rel='stylesheet', href='/css/style.css')
-    link(rel='stylesheet', href='/css/smoothness/jquery-ui-1.8.24.custom.css')
-    link(rel='stylesheet', href='/css/demo_table.css')
+    link(rel='stylesheet', href='/css/ui_custom.css')
+    link(rel='stylesheet', href='/css/jgrid.css')
 
     block scripts
         script(src='/js/nodeerp.js')
+        script(src='/js/lib/cog.js')
+        script(src='/js/lib/cog.utils.js')
         script(src='/js/lib/jquery-1.8.2.min.js')
-        script(src='/js/lib/knockout-2.1.0.js')
         script(src='/js/lib/modernizr-2.6.1.min.js')
         script(src='/js/lib/jquery-ui-1.8.24.custom.min.js')
-        script(src='/js/lib/jquery.dataTables.min.js')
-        script(src='/js/lib/jdialog.js')
 
-        script(src='/socket.io/socket.io.js')
+        script(src='/js/lib/knockout-2.1.0.js')
+        script(src='/js/lib/knockout.bindings.autocomplete.js')
+
+        script(src='/js/lib/jgrid.js')
+        script(src='/js/lib/jdialog.js')
+       //
+          script(src='/js/lib/jquery.dataTables.js')
+          script(src='/js/lib/knockout.bindings.dataTables.js')
+
+
+
+
+
+
+       // script(src='/socket.io/socket.io.js')
+
 
 
 
@@ -34,20 +48,20 @@ html(lang="en")
       div.centerContainer
         div#adminContainer
            div.logo
-              img(src='/img/logo.png')
+              img(src='/images/logo.png')
            div.usersContainer
               ul
                 li: a(href='#')
-                    img(src='/img/settings.png')
+                    img(src='/images/settings.png')
                 li: a(href='#')
-                    img(src='/img/favorites.png')
+                    img(src='/images/favorites.png')
                 li: a(href='#')
-                    img(src='/img/mail.png')
+                    img(src='/images/mail.png')
                     span.numberMail 10
                 li: a(href='#')
-                    img(src='/img/account.png')
+                    img(src='/images/account.png')
                     span.userName username
-    div#companyContainer
+    div#companyContainer.ui-helper-clearfix
         div.centerContainer
             div.company
                 span.companyName Company
@@ -71,21 +85,21 @@ html(lang="en")
     div.centerContainer
             div#verticalMenu
                 div.widgetPanel
-                    div.widgetHead
+                    div.widgetHead.ui-toolbar.ui-widget-header.ui-corner-bl.ui-corner-br.ui-helper-clearfix
                         div.actionBar
                             ul
                                 li
                                     a.formsMenu(href='#')
-                                        img(src='/img/forms.png')
+                                        img(src='/images/forms.png')
                                 li
                                     a.reportMenu(href='#')
-                                        img(src='/img/reports.png')
+                                        img(src='/images/reports.png')
                                 li
                                     a.flowMenu(href='#')
-                                        img(src='/img/flow.png')
+                                        img(src='/images/flow.png')
                                 li
                                     a.settingMenu(href='#')
-                                        img(src='/img/settingmenu.png')
+                                        img(src='/images/settingmenu.png')
                     div.widgetContent
             div#contentContainer
                   body!= body

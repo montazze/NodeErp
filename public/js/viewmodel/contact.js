@@ -19,6 +19,7 @@ $(function(){
         nerp.vm = function(){
 
            contacts = ko.observableArray([]),
+           selectedContact = ko.observable(null),
 
            loadContactsCallback = function(json){
                $.each(json,function(i,p){
@@ -34,6 +35,7 @@ $(function(){
 
            },
 
+
             loadContacts = function(){
                 $.ajax({
                             url: "/contact.json",
@@ -46,10 +48,30 @@ $(function(){
                             }
                 });
             }
+
+            gridViewModel = new ko.jgrid.viewModel({
+            data: this.contacts,
+            columns: [
+                { headerText: "name", rowText: "name" },
+                { headerText: "surname", rowText: "surname" }
+
+            ],
+            tableHeaderText: "Contacts",
+            tableSearchText: "Search:",
+            tableSearchPlaceholderText: "type here...",
+            pageSize: 4
+        });
+
+
+
+
+
         return{
             contacts: contacts,
             loadContactsCallback: loadContactsCallback,
-            loadContacts: loadContacts
+            loadContacts: loadContacts,
+            gridViewModel: gridViewModel
+
         }
 
         } ();
@@ -58,23 +80,19 @@ $(function(){
         nerp.vm.loadContacts();
         ko.applyBindings(nerp.vm);
 
+    $(document).on("click",".edit-click",function(){
+           $("#contentArea").load('/contact/new');
+           $("#editDialog").dialog({
+               modal: true,
+               height: 350,
+               width: 400
 
+           });
 
-
-$(document).on("click",".edit-click",function(){
-       $("#contentArea").load('/contact/new');
-       $("#editDialog").dialog({
-           modal: true,
-           height: 350,
-           width: 400
-
+        $()
        });
 
-    $()
-   });
 
-
-$(".viewTable").dataTable();
 
 
 });

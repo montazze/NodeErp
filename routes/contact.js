@@ -64,6 +64,13 @@ module.exports = function(app){
         });
     });
 
+    app.get('/contact/edit',function(req,res){
+        res.render("contact/new", { locals: {
+            title: 'New Contact'
+        }
+        });
+    });
+
     // EDIT
     app.get('/contact/:id/edit', function(req, res) {
             res.render('contact/edit',
