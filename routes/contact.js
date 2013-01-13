@@ -116,6 +116,7 @@ module.exports = function(app){
             .desc('name')
             .run(function(error,contacts){
                 if(error) throw error
+
                 res.contentType('application/json');
                 res.send(JSON.stringify(contacts));
             })

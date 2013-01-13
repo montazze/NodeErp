@@ -13,6 +13,7 @@ $(function(){
             self.surname = ko.observable();
             self.street = ko.observable();
             self.country = ko.observable();
+
         };
 
 
@@ -29,6 +30,7 @@ $(function(){
                         .surname(p.surname)
                         .street(p.street)
                         .country(p.country)
+
                    );
 
                });
@@ -52,6 +54,8 @@ $(function(){
             gridViewModel = new ko.jgrid.viewModel({
             data: this.contacts,
             columns: [
+                { headerText: "selection", rowtext: "selection"},
+                { headerText: "edit", rowText: "edit"},
                 { headerText: "name", rowText: "name" },
                 { headerText: "surname", rowText: "surname" }
 

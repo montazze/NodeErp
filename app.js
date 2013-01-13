@@ -50,6 +50,10 @@ Mongoose.connect('mongodb://localhost/NodeErp');
 exports = Schema = Mongoose.Schema;
 
 
+//DataModel
+exports = Prolob = require('prolob');
+exports = Dataprovider = Prolob.Dataprovider;
+
 
 // Models
 var models_path = __dirname + '/models'

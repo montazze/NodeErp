@@ -65,12 +65,25 @@
                             <table class=\"jgridTable\" cellspacing=\"0\">\
                                 <thead>\
                                     <tr  data-bind=\"foreach: columns\">\
+                                        <!-- ko if:(headerText == \"selection\") -->\
+                                        <th width='20px' id=\"selectAll\"><input type=\"checkbox\"/></th>\
+                                        <!-- /ko -->\
+                                        <!-- ko ifnot:(headerText == \"selection\" || headerText == 'title') -->\
                                         <th class=\"ui-state-default\" data-bind=\"text: headerText\"></th>\
+                                        <!-- /ko -->\
                                     </tr>\
                                 </thead>\
                                 <tbody data-bind=\"foreach: itemsOnCurrentPage\">\
                                     <tr data-bind=\"foreach: $parent.columns\">\
+                                         <!-- ko if:(headerText == \"selection\") -->\
+                                         <td><input type=\"checkbox\"/></td>\
+                                         <!-- /ko -->\
+                                         <!-- ko if:(headerText == \"selection\") -->\
+                                         <td><input type=\"button\"/></td>\
+                                         <!-- /ko -->\
+                                        <!-- ko ifnot:(headerText == 'selection\' || headerText == 'title' || headerText == 'edit\') -->\
                                         <td data-bind=\"text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
+                                        <!-- /ko -->\
                                     </tr>\
                                 </tbody>\
                             </table>\
@@ -117,4 +130,19 @@
             ko.renderTemplate(pageLinksTemplateName, viewModel, { templateEngine: templateEngine }, pageLinksContainer, "replaceNode");
         }
     };
+
+    ko.bindingHandlers.jgridheader = {
+      init: function() {
+          return { 'controlsDescendantBindings': true };
+      },
+
+       update: function (element, viewModelAccessor, allBindingsAccessor) {
+                 var viewModel = viewModelAccessor(), allBindings = allBindingsAccessor();
+
+
+
+       }
+    };
+
+
 })();
