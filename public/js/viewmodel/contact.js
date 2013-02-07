@@ -54,10 +54,12 @@ $(function(){
             gridViewModel = new ko.jgrid.viewModel({
             data: this.contacts,
             columns: [
-                { headerText: "selection", rowtext: "selection"},
-                { headerText: "edit", rowText: "edit"},
-                { headerText: "name", rowText: "name" },
-                { headerText: "surname", rowText: "surname" }
+                { headerText: "selection", rowtext: "selection", hidden: "0"},
+                { headerText: "edit", rowText: "edit", hidden: "0"},
+                { headerText: "id", rowText: "id", hidden: "1"},
+                { headerText: "name", rowText: "name", hidden: "0"},
+                { headerText: "surname", rowText: "surname", hidden: "0"},
+                { headerText: "street", rowText: "street", hidden: "0"}
 
             ],
             tableHeaderText: "Contacts",

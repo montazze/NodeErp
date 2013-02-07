@@ -13,7 +13,7 @@
         }
         var columns = [];
         for (var propertyName in data[0]) {
-            columns.push({ headerText: propertyName, rowText: propertyName });
+            columns.push({ headerText: propertyName, rowText: propertyName, hidden: propertyName });
         }
         return columns;
     }
@@ -68,7 +68,7 @@
                                         <!-- ko if:(headerText == \"selection\") -->\
                                         <th width='20px' id=\"selectAll\"><input type=\"checkbox\"/></th>\
                                         <!-- /ko -->\
-                                        <!-- ko ifnot:(headerText == \"selection\" || headerText == 'title') -->\
+                                        <!-- ko ifnot:(headerText == \"selection\" || headerText == 'title' || headerText == 'id' ) -->\
                                         <th class=\"ui-state-default\" data-bind=\"text: headerText\"></th>\
                                         <!-- /ko -->\
                                     </tr>\
@@ -78,10 +78,10 @@
                                          <!-- ko if:(headerText == \"selection\") -->\
                                          <td><input type=\"checkbox\"/></td>\
                                          <!-- /ko -->\
-                                         <!-- ko if:(headerText == \"selection\") -->\
+                                         <!-- ko if:(headerText == \"edit\") -->\
                                          <td><input type=\"button\"/></td>\
                                          <!-- /ko -->\
-                                        <!-- ko ifnot:(headerText == 'selection\' || headerText == 'title' || headerText == 'edit\') -->\
+                                        <!-- ko ifnot:(headerText == 'selection' || headerText == 'title' || headerText == 'edit' || headerText == 'id') -->\
                                         <td data-bind=\"text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
                                         <!-- /ko -->\
                                     </tr>\
