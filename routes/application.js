@@ -16,6 +16,44 @@ module.exports = function(app){
 
     });
 
+    app.use(function(req, res, next){
+           next(new NotFound(req.url))
+       })
+
+       // Provide our app with the notion of NotFound exceptions
+
+       function NotFound(path){
+           this.name = 'NotFound'
+           if (path) {
+               Error.call(this, 'Cannot find ' + path)
+               this.path = path
+           } else {
+               Error.call(this, 'Not Found')
+           }
+           Error.captureStackTrace(this, arguments.callee)
+       }
+
+    app.error(function(err, req, res, next){
+            if (err instanceof NotFound){
+                console.log(err.stack)
+                res.render('404', {
+                    status: 404,
+                    error: err,
+                    showStack: app.settings.showStackError,
+                    title: 'Oops! The page you requested does not exist'
+                })
+            }
+            else {
+                console.log(err.stack)
+                res.render('500', {
+                    status: 500,
+                    error: err,
+                    showStack: app.settings.showStackError,
+                    title: 'Oops! Something went wrong!'
+
+                })
+            }
+        })
 
 
 

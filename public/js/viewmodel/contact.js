@@ -52,39 +52,34 @@ $(function(){
             }
 
             gridViewModel = new ko.jgrid.viewModel({
-            data: this.contacts,
-            columns: [
-                { headerText: "selection", rowtext: "selection", hidden: "0"},
-                { headerText: "edit", rowText: "edit", hidden: "0"},
-                { headerText: "id", rowText: "id", hidden: "1"},
-                { headerText: "name", rowText: "name", hidden: "0"},
-                { headerText: "surname", rowText: "surname", hidden: "0"},
-                { headerText: "street", rowText: "street", hidden: "0"}
+                data: this.contacts,
+                columns: [
+                    { headerText: "selection", rowtext: "selection", hidden: "0"},
+                    { headerText: "edit", rowText: "edit", hidden: "0"},
+                    { headerText: "id", rowText: "id", hidden: "1"},
+                    { headerText: "name", rowText: "name", hidden: "0"},
+                    { headerText: "surname", rowText: "surname", hidden: "0"},
+                    { headerText: "street", rowText: "street", hidden: "0"}
 
-            ],
-            tableHeaderText: "Contacts",
-            tableSearchText: "Search:",
-            tableSearchPlaceholderText: "type here...",
-            pageSize: 4
-        });
+                ],
+                tableHeaderText: "Contacts",
+                tableSearchText: "Search:",
+                tableSearchPlaceholderText: "type here...",
+                pageSize: 4
+            });
 
+            return{
+                contacts: contacts,
+                loadContacts: loadContacts,
+                gridViewModel: gridViewModel
 
-
-
-
-        return{
-            contacts: contacts,
-            loadContactsCallback: loadContactsCallback,
-            loadContacts: loadContacts,
-            gridViewModel: gridViewModel
-
-        }
+            }
 
         } ();
 
 
         nerp.vm.loadContacts();
-        ko.applyBindings(nerp.vm);
+        ko.applyBindings(nerp.vm,$('jgrid')[0]);
 
     $(document).on("click",".edit-click",function(){
            $("#contentArea").load('/contact/new');

@@ -6,8 +6,10 @@
  */
 
 var UserSchema = new Schema({
-    name : {type: String, default : '', trim : true }
 
+
+    name : {type: String, default : '', trim : true },
+    password: {type: String, default : '',trim: true}
 })
 
 // contact validation
