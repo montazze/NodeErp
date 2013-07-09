@@ -1,4 +1,8 @@
 var io = Io;
+var vm = {
+    layout: true,
+    title: 'Welcome to NodeErp'
+}
 
 
 module.exports = function(app){
@@ -6,19 +10,17 @@ module.exports = function(app){
      * GET home page.
      */
     app.get('/', function(req, res){
-        res.render('index', {
-            layout: true,
-            title: 'Welcome to NodeErp'
 
 
-        });
+
+        res.render('index',vm);
 
 
     });
 
     app.use(function(req, res, next){
-           next(new NotFound(req.url))
-       })
+          next(new NotFound(req.url))
+    })
 
        // Provide our app with the notion of NotFound exceptions
 
@@ -54,6 +56,9 @@ module.exports = function(app){
                 })
             }
         })
+
+
+
 
 
 

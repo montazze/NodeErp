@@ -37,4 +37,7 @@ $(function(){
 
     nerp.vm.loadApplication();
    // ko.applyBindings(nerp.appvm);
+
+
+
 });

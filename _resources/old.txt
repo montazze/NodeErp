@@ -105,3 +105,13 @@ $(function(){
 
 
 });
+
+                columns: [
+                    { headerText: "selection", row: "selection", hidden: "0"},
+                    { headerText: "edit", row: "edit", hidden: "0"},
+                    { headerText: "id", row: "id", hidden: "1"},
+                    { headerText: "name", row: "name", hidden: "0"},
+                    { headerText: "surname", row: "surname", hidden: "0"},
+                    { headerText: "street", row: "street", hidden: "0"}
+
+                ],

@@ -12,11 +12,14 @@ body {
   padding: 0;
   font-size: 12px;
   line-height: 20px;
-  min-height: 100%;
   position: relative;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #424242;
 }
+
+html, body, #contentContainer { height: 100%; }
+body > #contentContainer { height: auto; min-height: 100%; }
+
 .notificationContainer ul li span {
     color: #424242;
     display: block;
@@ -67,19 +70,24 @@ h6 {
 .widgetPanel{
     border: 1px solid #d5d5d5;
     display: block;
-    background: #fafafa;
+    background: #FFFFFF;
     clear: both;
     border-top: none;
 }
 .widgetHead{
     background-attachment: scroll;
     background-clip: border-box;
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
     border-top: 1px solid #d5d5d5;
     border-bottom: 1px solid #d5d5d5;
     position: relative;
     padding: 10px;
 }
+.widgetHeadText{
+    float: left;
+    padding-right: 25px;
+}
+
 .widgetContent{
     margin: 20px;
     display: block;
@@ -390,9 +398,26 @@ form input.error-input:hover { border: 1px solid #b03e27; }
     height: 120PX;
     width: 100%;
     background-color: #505050;
+    clear: both;
+    position: relative;
+    z-index: 10;
 }
+
 #notificationContainer{
     height: 40px;
     width: 100%;
     background-color: #3f3f3f;
+}
+
+
+.sideMenu ul li a{
+    font-size: 15px;
+    display: block;
+    border: 1px;
+    margin-top: 1px;;
+}
+
+
+.sideMenu ul li a:hover, .sideMenu ul li a.active {
+
 }

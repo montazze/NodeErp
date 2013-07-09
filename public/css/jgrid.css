@@ -15,11 +15,13 @@
     font-size: 11px;
 }
 .jgridFilter input[type="text"] {
-    padding: 3px 5px;
+    padding: 5px;
     border: 1px solid #D5D5D5;
     width: 200px;
     position: relative;
     margin-left: 6px;
+    margin-right: -6px;
+    margin-top: 12px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     -khtml-border-radius: 2px;
@@ -29,7 +31,7 @@
 .jgridFilter .srch {
     position: absolute;
     right: 6px;
-    top: 7px;
+    top: 22px;
     background: url(../images/searchSmall.png) no-repeat 0 0;
     border: none;
     width: 9px;
@@ -54,6 +56,7 @@
     font-size: medium;
     font-weight: bold;
 }
+
 .jgridTable tr{
     border-bottom-color: #E7E7E7;
     border-bottom-style: solid;
@@ -83,3 +86,4 @@
     border-left-style: solid;
     border-left-width: 1px;
 }
+

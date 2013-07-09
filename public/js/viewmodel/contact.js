@@ -17,12 +17,15 @@ $(function(){
         };
 
 
-        nerp.vm = function(){
+        nerp.vmcontacts = function(){
 
-           contacts = ko.observableArray([]),
-           selectedContact = ko.observable(null),
+            this.contacts = ko.observableArray([]);
 
-           loadContactsCallback = function(json){
+            this.contact = new nerp.Contact();
+
+            this.contact.name = 'test1';
+
+            this.loadContactsCallback = function(json){
                $.each(json,function(i,p){
                     contacts.push(new nerp.Contact()
                         .id(p._id)
@@ -35,10 +38,10 @@ $(function(){
 
                });
 
-           },
+            }
 
 
-            loadContacts = function(){
+            this.loadContacts = function(){
                 $.ajax({
                             url: "/contact.json",
                             type: "GET",
@@ -51,49 +54,85 @@ $(function(){
                 });
             }
 
-            gridViewModel = new ko.jgrid.viewModel({
-                data: this.contacts,
-                columns: [
-                    { headerText: "selection", rowtext: "selection", hidden: "0"},
-                    { headerText: "edit", rowText: "edit", hidden: "0"},
-                    { headerText: "id", rowText: "id", hidden: "1"},
-                    { headerText: "name", rowText: "name", hidden: "0"},
-                    { headerText: "surname", rowText: "surname", hidden: "0"},
-                    { headerText: "street", rowText: "street", hidden: "0"}
 
-                ],
+            var grid = new jgrid("contacts");
+
+            grid.viewModel({
+                data: this.contacts,
                 tableHeaderText: "Contacts",
                 tableSearchText: "Search:",
                 tableSearchPlaceholderText: "type here...",
                 pageSize: 4
             });
 
-            return{
-                contacts: contacts,
-                loadContacts: loadContacts,
-                gridViewModel: gridViewModel
+            var c1 = new grid.column();
+            c1.row = "selection";
 
+            var c2 = new grid.column();
+            c2.row = "edit";
+            c2.headerText = "edit";
+
+            var c3 = new grid.column;
+            c3.row = "id";
+            c3.headerText = "id";
+            c3.hidden = 1;
+
+
+            var c4 = new grid.column();
+            c4.row = "name";
+            c4.headerText = "Name";
+
+            var c5 = new grid.column();
+            c5.row = "surname";
+            c5.headerText = "Surname";
+
+            var c6 = new grid.column();
+            c6.row = "street";
+            c6.headerText = "Street";
+
+            grid.addColumn(c1);
+            grid.addColumn(c2);
+            grid.addColumn(c3);
+            grid.addColumn(c4);
+            grid.addColumn(c5);
+            grid.addColumn(c6);
+
+
+            var view = new jview("contact");
+
+            view.viewModel({
+               data: this.viewContact
+
+            })
+
+
+
+            view.addColumn(c1);
+            view.addColumn(c2);
+            view.addColumn(c3);
+            view.addColumn(c4);
+            view.addColumn(c5);
+            view.addColumn(c6);
+
+
+
+            this.showDetails = function(target, event){
+                 target.name = 'test3';
             }
 
+            return{
+
+                loadContacts: loadContacts,
+                index: grid,
+                view: view
+            }
         } ();
 
+        nerp.vmcontacts.loadContacts();
+        nerp.vmcontacts.index.load();
+        nerp.vmcontacts.view.load();
 
-        nerp.vm.loadContacts();
-        ko.applyBindings(nerp.vm,$('jgrid')[0]);
-
-    $(document).on("click",".edit-click",function(){
-           $("#contentArea").load('/contact/new');
-           $("#editDialog").dialog({
-               modal: true,
-               height: 350,
-               width: 400
-
-           });
-
-        $()
-       });
-
-
+        ko.applyBindings(nerp.vmcontacts);
 
 
 });

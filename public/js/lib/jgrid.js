@@ -1,148 +1,140 @@
 /**
  * Company: OfficeSoft
  * User: smangelschots
- * Date: 16/10/12
- * Time: 22:56
+ * Date: 15/05/13
+ * Time: 16:12
  */
 
-(function () {
-    // Private function
-    function getColumnsForScaffolding(data) {
-        if ((typeof data.length !== 'number') || data.length === 0) {
-            return [];
-        }
-        var columns = [];
-        for (var propertyName in data[0]) {
-            columns.push({ headerText: propertyName, rowText: propertyName, hidden: propertyName });
-        }
-        return columns;
+function jgrid(name) {
+
+    this.name = name;
+
+
+    this.column = function(){
+        this.row = '';
+        this.headerText = '';
+        this.hidden = 0;
     }
 
-    ko.jgrid = {
-        // Defines a view model class you can use to populate a grid
-        viewModel: function (configuration) {
-            this.data = configuration.data;
-            this.currentPageIndex = ko.observable(0);
-            this.pageSize = configuration.pageSize || 5;
-            this.tableHeaderText = configuration.tableHeaderText;
-            this.tableSearchText = configuration.tableSearchText;
-            this.tableSearchPlaceholderText = configuration.tableSearchPlaceholderText;
 
-            // If you don't specify columns configuration, we'll use scaffolding
-            this.columns = configuration.columns || getColumnsForScaffolding(ko.utils.unwrapObservable(this.data));
+    this.addColumn = function(column){
+              this.columns.push(column)
+            }
 
-            this.itemsOnCurrentPage = ko.computed(function () {
-                var startIndex = this.pageSize * this.currentPageIndex();
-                return this.data.slice(startIndex, startIndex + this.pageSize);
-            }, this);
 
-            this.maxPageIndex = ko.computed(function () {
-                return Math.ceil(ko.utils.unwrapObservable(this.data).length / this.pageSize) - 1;
-            }, this);
+    this.viewModel  = function(configuration){
+       this.data = configuration.data;
+       this.columns = [];
+       this.tableHeaderText = configuration.tableHeaderText;
+       this.tableSearchText = configuration.tableSearchText;
+       this.tableSearchPlaceholderText = configuration.tableSearchPlaceholderText;
+       this.pageSize = configuration.pageSize;
+    }
+
+};
+jgrid.prototype.load = function(){
+
+    var selectAllColumnHeaderTemplate = "<th width='20px' id='selectAll'><input type='checkbox' style='margin-left: -10px;' /></th>";
+    var columnHeaderTemplate = "<th class='ui-state-default'  style='width: 19px; padding-left: 0px;'></th>";
+
+    var selectAllColumnTemplate = "<td><input type=\"checkbox\"/></td>";
+    var editColumnTemplate = "<td><a class='gridEdit'  href='#' data-bind='event: {mouseover: showDetails}'  ><img src='images/pencil.png'></a></td>";
+
+    var header = '';
+    var tables = '';
+
+    for(var h in this.columns){
+
+        var col = this.columns[h];
+
+        var visibility = 'table-cell';
+
+        if(col.hidden  === 1){
+            visibility = 'none';
         }
-    };
 
-    // Templates used to render the grid
-    var templateEngine = new ko.nativeTemplateEngine();
-
-    templateEngine.addTemplate = function(templateName, templateMarkup) {
-        document.write("<script type='text/html' id='" + templateName + "'>" + templateMarkup + "<" + "/script>");
-    };
-
-    templateEngine.addTemplate("ko_jgrid_grid", "\
-                    <div class=\"widgetPanel\">\
-                        <div class=\"widgetHead\">\
-                            <h5 data-bind=\"text: tableHeaderText\"></h5> \
-                        </div>\
-                        <div class=\"widgetContent\">\
-                            <div>\
-                               <div class='jgridFilter'>\
-                                   <label data-bind=\"text: tableSearchText \"></label>\
-                                   <input type=\"text\" data-bind=\"attr: {placeholder: tableSearchPlaceholderText}\" >\
-                                   <div class=\"srch\"></div>\
-                               </div> \
-                            </div>\
-                            <table class=\"jgridTable\" cellspacing=\"0\">\
-                                <thead>\
-                                    <tr  data-bind=\"foreach: columns\">\
-                                        <!-- ko if:(headerText == \"selection\") -->\
-                                        <th width='20px' id=\"selectAll\"><input type=\"checkbox\"/></th>\
-                                        <!-- /ko -->\
-                                        <!-- ko ifnot:(headerText == \"selection\" || headerText == 'title' || headerText == 'id' ) -->\
-                                        <th class=\"ui-state-default\" data-bind=\"text: headerText\"></th>\
-                                        <!-- /ko -->\
-                                    </tr>\
-                                </thead>\
-                                <tbody data-bind=\"foreach: itemsOnCurrentPage\">\
-                                    <tr data-bind=\"foreach: $parent.columns\">\
-                                         <!-- ko if:(headerText == \"selection\") -->\
-                                         <td><input type=\"checkbox\"/></td>\
-                                         <!-- /ko -->\
-                                         <!-- ko if:(headerText == \"edit\") -->\
-                                         <td><input type=\"button\"/></td>\
-                                         <!-- /ko -->\
-                                        <!-- ko ifnot:(headerText == 'selection' || headerText == 'title' || headerText == 'edit' || headerText == 'id') -->\
-                                        <td data-bind=\"text: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
-                                        <!-- /ko -->\
-                                    </tr>\
-                                </tbody>\
-                            </table>\
-                        </div>\
-                    </div>");
-
-
-    templateEngine.addTemplate("ko_jgrid_pageLinks", "\
-                    <div class=\"widgetFooter\"> \
-                        <div class=\"jgridToolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix\">\
-                            <div class=\"jgridPageLinks\">\
-                                <span>Page:</span>\
-                                <!-- ko foreach: ko.utils.range(0, maxPageIndex) -->\
-                                       <a href=\"#\" data-bind=\"text: $data + 1, click: function() { $root.currentPageIndex($data) }, css: { selected: $data == $root.currentPageIndex() }\">\
-                                    </a>\
-                                <!-- /ko -->\
-                            </div>\
-                        </div>\
-                    </div>");
-
-    // The "jgrid" binding
-    ko.bindingHandlers.jgrid = {
-        init: function() {
-            return { 'controlsDescendantBindings': true };
-        },
-        // This method is called to initialize the node, and will also be called again if you change what the grid is bound to
-        update: function (element, viewModelAccessor, allBindingsAccessor) {
-            var viewModel = viewModelAccessor(), allBindings = allBindingsAccessor();
-
-            // Empty the element
-            while(element.firstChild)
-                ko.removeNode(element.firstChild);
-
-            // Allow the default templates to be overridden
-            var gridTemplateName      = allBindings.jgridTemplate || "ko_jgrid_grid",
-                pageLinksTemplateName = allBindings.jgridPagerTemplate || "ko_jgrid_pageLinks";
-
-            // Render the main grid
-            var gridContainer = element.appendChild(document.createElement("DIV"));
-            ko.renderTemplate(gridTemplateName, viewModel, { templateEngine: templateEngine }, gridContainer, "replaceNode");
-
-            // Render the page links
-            var pageLinksContainer = element.appendChild(document.createElement("DIV"));
-            ko.renderTemplate(pageLinksTemplateName, viewModel, { templateEngine: templateEngine }, pageLinksContainer, "replaceNode");
+        if(col.row === 'selection'){
+            header += selectAllColumnHeaderTemplate;
+            tables += selectAllColumnTemplate;
         }
-    };
+        else if(col.row === 'edit'){
+            header += columnHeaderTemplate;
+            tables += editColumnTemplate;
+        }
+        else{
+            header +=  "<th class='ui-state-default' id='"+ col.row +"' style=display:" + visibility + " >" + col.headerText + "</th>";
+            tables +=  "<td data-bind='text: " + col.row +"' id='"+ col.row +"'  style=display:" + visibility + " ></td>";
+        }
+    }
 
-    ko.bindingHandlers.jgridheader = {
-      init: function() {
-          return { 'controlsDescendantBindings': true };
-      },
+    var mainTemplate =
+        "<div class='widgetPanel'>" +
+                    "<div class='widgetHead'>" +
+                        "<div class='widgetHeadText'>" +
+                            "<h5>"+ this.tableHeaderText +"</h5>" +
+                        "</div>" +
+                        "<div class='widgetHeadActions'><a class='gridAddNew' href='#'><img src='images/plus.png'></a> <a class='gridDelete' href='#'><img src='images/cross.png'></a>" +
+                        "</div>" +
+                        "<div class='widgetContent'>" +
+                            "<div>" +
+                                "<div class='jgridFilter'>" +
+                                    "<label text='"+ this.tableSearchText + "' > </label>" +
+                                    "<input type='text' placeholder='"+ this.tableSearchPlaceholderText+ "' >" +
+                                    "<div class='srch'></div>" +
+                                "</div>" +
+                                "<table class='jgridTable' cellspacing='0'>" +
+                                    "<thead>" +
+                                        "<tr>" +
+                                            header +
+                                        "</tr>" +
+                                    "</thead>" +
+                                    "<tbody data-bind='foreach: index.data'>" +
+                                        "<tr>" +
+                                           tables +
+                                        "</tr>" +
+                                    "</tbody>" +
+                                "</table>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>" +
+                "<div class='widgetFooter'>" +
+                    "<div class='jgridToolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix'>" +
+                        "<div class='jgridPageLinks'>" +
+                            "<span>Page:</span>" +
+                                   "<a href='#'>" +
+                                   "</a>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>"
 
-       update: function (element, viewModelAccessor, allBindingsAccessor) {
-                 var viewModel = viewModelAccessor(), allBindings = allBindingsAccessor();
+
+
+    $('[name=' + this.name  + ']').append(mainTemplate);
 
 
 
-       }
-    };
 
+    $(document).on("click",".gridEdit",function(s,r){
+              var urlId = '/contact/5037df386cdc1e5c02000005/edit'
 
-})();
+              $("#contentArea").load(urlId);
+              $("#editDialog").dialog({
+                  modal: true,
+                  height: 350,
+                  width: 400
+
+              });
+          });
+       $(document).on("click",".gridAddNew",function(){
+           $("#contentArea").load('/contact/new');
+           $("#editDialog").dialog({
+               modal: true,
+               height: 350,
+               width: 400
+
+           });
+
+       });
+
+}

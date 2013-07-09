@@ -27,7 +27,9 @@ html(lang="en")
         script(src='/js/lib/knockout.bindings.autocomplete.js')
 
         script(src='/js/lib/jgrid.js')
+        script(src='/js/lib/jview.js')
         script(src='/js/lib/jdialog.js')
+
 
         script(src='/js/viewmodel/application.js')
 
@@ -51,11 +53,11 @@ html(lang="en")
                     span.numberMail 10
                 li: a(href='#')
                     img(src='/images/account.png')
-                    span.userName username
+                    span.userName #{username}
     div#companyContainer.ui-helper-clearfix
         div.centerContainer
             div.company
-                span.companyName Company
+                span.companyName #{company}
             div.notificationContainer
                 ul
                     li
@@ -73,25 +75,34 @@ html(lang="en")
                                 fieldset
                                     input#search-keyword.round.button.searchImg.imageRight(type='text', name='search', placeholder='Search...',style='width: 200px; margin-left:100px;' )
                                     input(type='hidden', value='submit')
-    div.centerContainer
+    div.centerContainer#container
             div#verticalMenu
                 div.widgetPanel
                     div.widgetHead.ui-toolbar.ui-widget-header.ui-corner-bl.ui-corner-br.ui-helper-clearfix
                         div.actionBar
                             ul
                                 li
-                                    a.formsMenu(href='#')
+                                    a#formsTab.active(href='#')
                                         img(src='/images/forms.png')
                                 li
-                                    a.reportMenu(href='#')
+                                    a#reportTab(href='#')
                                         img(src='/images/reports.png')
                                 li
-                                    a.flowMenu(href='#')
+                                    a#flowTab(href='#')
                                         img(src='/images/flow.png')
                                 li
-                                    a.settingMenu(href='#')
+                                    a#settingsTab(href='#')
                                         img(src='/images/settingmenu.png')
                     div.widgetContent
+                        div.sideMenu
+                            ul
+                                -for (var id in sidemenu)
+                                    - var item = sidemenu[id]
+                                    li
+                                        a#contactMenuItem.active(href='/#{id}')
+                                            span #{item.name}
+
+
             div#contentContainer
                   body!= body
                   //if lt IE 7

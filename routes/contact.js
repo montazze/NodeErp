@@ -27,6 +27,7 @@ module.exports = function(app){
                 res.render("contact/new",{
                     title: 'New Contact',
                     contact: contact
+
                 })
             }
             else{
@@ -103,11 +104,13 @@ module.exports = function(app){
 
     // READ
     app.get('/contact',  function(req, res){
-        res.render('contact/index', {
+        res.render('template/index', {
             layout: true,
-            title: 'Contacts'
-         }
-      )
+            title: 'Contacts',
+            model: 'contact'
+            }
+        )
+
     });
 
     app.get('/contact.json',function(req,res){

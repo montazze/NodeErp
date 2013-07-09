@@ -50,6 +50,9 @@ Mongoose.connect('mongodb://localhost/NodeErp');
 exports = Schema = Mongoose.Schema;
 
 
+
+
+
 //DataModel
 exports = Prolob = require('prolob');
 exports = Dataprovider = Prolob.Dataprovider;
@@ -72,6 +75,17 @@ routeFiles.forEach(function(file){
     var name = file.substr(0,file.indexOf('.'));
     require('./routes/' + name)(app);
 });
+
+
+
+
+//Appmenu
+exports = company = 'test company';
+exports = username = 'steve mangelschots';
+exports = sidemenu = {
+        contact:{name:'Contacts'}
+      }
+
 
 // Error handler
 //require('./error').boot(app)
