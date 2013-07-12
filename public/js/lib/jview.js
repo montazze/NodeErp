@@ -69,7 +69,7 @@ jview.prototype.load = function(){
     $('[name=' + this.name + ']').append(mainTemplate);
 };
 
-function sowDetail(){
+function showDetails(){
 
 }
 
