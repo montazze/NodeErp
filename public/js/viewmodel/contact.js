@@ -16,14 +16,10 @@ $(function(){
 
         };
 
-
         nerp.vmcontacts = function(){
 
             this.contacts = ko.observableArray([]);
-
             this.contact = new nerp.Contact();
-
-            this.contact.name = 'test1';
 
             this.loadContactsCallback = function(json){
                $.each(json,function(i,p){
@@ -33,13 +29,9 @@ $(function(){
                         .surname(p.surname)
                         .street(p.street)
                         .country(p.country)
-
                    );
-
                });
-
             }
-
 
             this.loadContacts = function(){
                 $.ajax({
@@ -77,7 +69,6 @@ $(function(){
             c3.headerText = "id";
             c3.hidden = 1;
 
-
             var c4 = new grid.column();
             c4.row = "name";
             c4.headerText = "Name";
@@ -97,15 +88,11 @@ $(function(){
             grid.addColumn(c5);
             grid.addColumn(c6);
 
-
             var view = new jview("contact");
 
             view.viewModel({
-               data: this.viewContact
-
+               data: this.contact
             })
-
-
 
             view.addColumn(c1);
             view.addColumn(c2);
@@ -114,10 +101,12 @@ $(function(){
             view.addColumn(c5);
             view.addColumn(c6);
 
-
-
             this.showDetails = function(target, event){
-                 target.name = 'test3';
+                contact.id(target.id());
+                contact.name(target.name());
+                contact.surname(target.surname());
+                contact.street(target.street());
+                contact.country(target.country());
             }
 
             return{
@@ -133,7 +122,6 @@ $(function(){
         nerp.vmcontacts.view.load();
 
         ko.applyBindings(nerp.vmcontacts);
-
 
 });
 

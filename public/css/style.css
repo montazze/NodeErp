@@ -26,7 +26,7 @@ body > #contentContainer { height: auto; min-height: 100%; }
     font-size: 16px;
     vertical-align: middle;
     white-space: normal;
-    width: 200px;
+    width: 190px;
 }
 h1, h2, h3, h4, h5, h6, ul.tabs li a, .leftNav ul li a, .stats ul li span, .userLink, .errorPage p, .ui-dialog .ui-dialog-title {
     font-family: 'Cuprum', sans-serif;
@@ -203,7 +203,7 @@ h6 {
     padding-top: 25px;
     padding-left: 50px;
     float: left;
-    width: 250px;
+    width: 200px;
 
 }
 

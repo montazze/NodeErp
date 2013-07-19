@@ -51,7 +51,7 @@ jview.prototype.load = function(){
                                 "<li>" +
                                     "<div class='widgetRow80'>" +
                                         "<label>Surname:</label>" +
-                                        "<input type='text' name='surname' class='round'>" +
+                                        "<input type='text' data-bind='value: contact.surname' name='surname' class='round'>" +
                                     "</div>" +
                                 "</li>" +
                                 "<li>" +
@@ -69,9 +69,6 @@ jview.prototype.load = function(){
     $('[name=' + this.name + ']').append(mainTemplate);
 };
 
-function showDetails(){
-
-}
 
 
 
